@@ -18,8 +18,8 @@ const range = (start, end, step = start > end ? -1 : 1) => {
   for (let i = 1; i <= count - 1; i += 1) {
     ret.push(ret[ret.length - 1] + step);
   }
-  if (parseInt(step) !== parseFloat(step)) {
-    const floatLen = (parseFloat(step) - parseInt(step)).toString().length - 2;
+  const floatLen = (parseFloat(step) - parseInt(step)).toString().length - 2;
+  if (floatLen > 0) {
     for (i in ret) {
       ret[i] = parseFloat(ret[i].toFixed(floatLen));
     }
