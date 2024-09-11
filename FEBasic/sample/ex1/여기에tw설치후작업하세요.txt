@@ -1,0 +1,3 @@
+https://tailwindcss.com/docs/installation
+
+위 사이트의 가이드대로 설치 및 설정 후 작업하세요.

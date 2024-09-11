@@ -1,0 +1,21 @@
+{
+  "name": "febasic",
+  "version": "1.0.0",
+  "description": "하나로 4,5기 프론트엔드 기초 평가 과제",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "JS",
+    "TS"
+  ],
+  "author": "indiflex",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.5.4"
+  },
+  "dependencies": {
+    "assert": "^2.1.0"
+  }
+}
