@@ -1,4 +1,4 @@
-const con2exp = new Map([
+const con2Exp = new Map([
   ["ㄱ", "[ㄱ가-깋]"],
   ["ㄴ", "[ㄴ나-닣]"],
   ["ㄷ", "[ㄷ다-딯]"],
@@ -13,15 +13,20 @@ const con2exp = new Map([
   ["ㅌ", "[ㅌ타-팋]"],
   ["ㅍ", "[ㅍ파-핗]"],
   ["ㅎ", "[ㅎ하-힣]"],
+  ["ㄲ", "[ㄲ까-낗]"],
+  ["ㄸ", "[ㄸ따-띻]"],
+  ["ㅃ", "[ㅃ빠-삫]"],
+  ["ㅆ", "[ㅆ싸-앃]"],
+  ["ㅉ", "[ㅉ짜-찧]"],
 ]);
-const txt2exp = (txt) =>
+const txt2Exp = (txt) =>
   txt
     .split("")
-    .reduce((s, i) => (con2exp.has(i) ? (s += con2exp.get(i)) : (s += i)), "");
+    .reduce((s, i) => (con2Exp.has(i) ? (s += con2Exp.get(i)) : (s += i)), "");
 
 const searchByKoreanInitialSound = (data, firstSounds) =>
   data.filter((str) => {
-    if (str.search(txt2exp(firstSounds)) !== -1) return str;
+    if (str.search(txt2Exp(firstSounds)) !== -1) return str;
   });
 
 module.exports = { searchByKoreanInitialSound };
