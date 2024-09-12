@@ -69,3 +69,4 @@ table1.printBill();
 
 table2.order("짬뽕");
 table2.printBill();
+//
