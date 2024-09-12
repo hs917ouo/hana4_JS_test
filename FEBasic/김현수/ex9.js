@@ -7,14 +7,15 @@ const MENU = {
 
 function bill(tableNo) {
   const total = [];
-  let sum = 0;
-  let tax = 0;
+  let totalSum = 0;
+  let totalTax = 0;
+  const taxCalculate = (price) => Math.round(price / 11);
   return {
     order(item) {
       MENU[item] ? total.push([item, MENU[item]]) : "";
-      MENU[item] ? (sum += MENU[item].price) : "";
+      MENU[item] ? (totalSum += MENU[item].price) : "";
       MENU[item] && MENU[item].taxfree !== 1
-        ? (tax += Math.round(MENU[item].price / 11))
+        ? (totalTax += taxCalculate(MENU[item].price))
         : "";
     },
     printBill() {
@@ -24,12 +25,12 @@ function bill(tableNo) {
         printFood(food[0]);
         printPrice`공급가액:${food[1].price}`;
         printPrice`부가세액:${
-          food[1].taxfree === 1 ? 0 : Math.round(food[1].price / 11)
+          food[1].taxfree === 1 ? 0 : taxCalculate(food[1].price)
         }`;
         printSingleLine();
       }
-      printPrice`주문합계:${sum}`;
-      printPrice`주문합계:${tax}`;
+      printPrice`주문합계:${totalSum}`;
+      printPrice`주문합계:${totalTax}`;
       printDoubleLine();
       console.log();
     },
