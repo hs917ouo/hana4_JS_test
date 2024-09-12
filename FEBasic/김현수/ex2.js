@@ -1,5 +1,5 @@
-// range 함수를 작성하세요.
 const range = (start, end, step = start > end ? -1 : 1) => {
+  /////예외처리 시작/////
   if (end === undefined) {
     if (start === 0) return [0];
     if (start > 0) {
@@ -12,6 +12,7 @@ const range = (start, end, step = start > end ? -1 : 1) => {
   }
   if ((start - end) * step > 0) return [];
   if (step === 0 || start === end) return [start];
+  /////예외처리 완료/////
 
   const count = Math.abs(Math.trunc((end - start) / step)) + 1;
   const ret = [start];
