@@ -1,3 +1,4 @@
+const LABEL_SIZE = 10;
 const MENU = {
   짜장: { price: 7000 },
   짬뽕: { price: 9900 },
@@ -17,29 +18,40 @@ function bill(tableNo) {
         : "";
     },
     printBill() {
-      console.log(`Table. ${tableNo}`);
-      console.log("=====================");
+      printTableNo(tableNo);
+      printDoubleLine();
       for (food of total) {
-        console.log(`* ${food[0]}`);
-        console.log(
-          `공급가액:`,
-          `${food[1].price.toLocaleString()}원`.padStart(10, " ")
-        );
-        console.log(
-          `부가세액:`,
-          `${
-            food[1].taxfree === 1
-              ? 0
-              : Math.round(food[1].price / 11).toLocaleString()
-          }원`.padStart(10, " ")
-        );
-        console.log("---------------------");
+        printFood(food[0]);
+        printPrice`공급가액:${food[1].price}`;
+        printPrice`부가세액:${
+          food[1].taxfree === 1 ? 0 : Math.round(food[1].price / 11)
+        }`;
+        printSingleLine();
       }
-      console.log(`주문합계:`, `${sum.toLocaleString()}원`.padStart(10, " "));
-      console.log(`주문합계:`, `${tax.toLocaleString()}원`.padStart(10, " "));
-      console.log(`=====================\n`);
+      printPrice`주문합계:${sum}`;
+      printPrice`주문합계:${tax}`;
+      printDoubleLine();
+      console.log();
     },
   };
+}
+function printTableNo(tableNo) {
+  console.log(`Table. ${tableNo}`);
+}
+function printDoubleLine() {
+  console.log("=====================");
+}
+function printSingleLine() {
+  console.log("---------------------");
+}
+function printFood(food) {
+  console.log(`* ${food}`);
+}
+function printPrice([label, unit], price) {
+  console.log(
+    `${label}`,
+    `${price.toLocaleString()}원`.padStart(LABEL_SIZE, " ")
+  );
 }
 
 const table1 = bill(1);
