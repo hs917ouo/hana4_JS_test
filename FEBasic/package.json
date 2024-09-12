@@ -13,7 +13,8 @@
   "author": "indiflex",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^22.5.4"
+    "@types/node": "^22.5.4",
+    "tailwindcss": "^3.4.11"
   },
   "dependencies": {
     "assert": "^2.1.0"
