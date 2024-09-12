@@ -1,6 +1,6 @@
 Array.prototype.sortBy = function (sortProp = "") {
   const arr = sortProp.split(",");
-  // arr.reverse();
+  arr.reverse();
   for (prop of arr) {
     const [key, direction = "asc"] = prop?.split(":");
     const dir = direction.toLowerCase() === "desc" ? -1 : 1;
