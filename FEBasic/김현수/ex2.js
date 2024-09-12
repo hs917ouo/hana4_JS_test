@@ -23,9 +23,6 @@ const range = (start, end, step = start > end ? -1 : 1) => {
     ret.forEach((e, idx, array) => {
       array[idx] = parseFloat(e.toFixed(floatLen));
     });
-    // for (i in ret) {
-    //   ret[i] = parseFloat(ret[i].toFixed(floatLen));
-    // }
   }
   return ret;
 };
