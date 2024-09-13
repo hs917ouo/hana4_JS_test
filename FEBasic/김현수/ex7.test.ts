@@ -87,6 +87,35 @@ async function test(userId: string | number) {
   } catch (error) {
     console.error("Test Case 3 Failed", error);
   }
+  try {
+    const posts = await getPosts(1);
+    assert.strictEqual(posts.length, 10, "Should return 10 posts.");
+    for (let i = 0; i < posts.length; i++) {
+      const post = posts[i];
+
+      assert.strictEqual(
+        typeof post.postId,
+        "number",
+        `Post ${i + 1} should have a numeric postId.`
+      );
+      assert.strictEqual(
+        typeof post.title,
+        "string",
+        `Post ${i + 1} should have a string title.`
+      );
+      assert(
+        Array.isArray(post.comments),
+        `Post ${i + 1} should have a comments array.`
+      );
+      assert.strictEqual(
+        post.comments.length,
+        5,
+        `Post ${i + 1} should have 5 comments.`
+      );
+    }
+  } catch (error) {
+    console.error("Test Case 4 Failed", error);
+  }
 }
 
 test(1);
