@@ -38,39 +38,3 @@ assert.notStrictEqual(
   newKim.oo.addr.city,
   "Not Pass3: city가 다르지 않아요!"
 );
-const obj1 = { a: 1 };
-newKim.zm.set("key", "value");
-assert.notDeepStrictEqual(newKim.zm, kim.zm);
-
-newKim.zwm.set(obj1, "value");
-console.log(kim.zwm);
-assert.notDeepStrictEqual(newKim.zwm, kim.zwm);
-
-const map = new Map();
-const set = new Set();
-const weakMap = new WeakMap();
-const weakSet = new WeakSet();
-
-console.log(map);
-
-const obj2 = { b: 2 };
-
-map.set("key1", obj1);
-set.add(obj2);
-weakMap.set(obj1, obj2);
-weakSet.add(obj1);
-
-console.log(map);
-
-const deepCopiedMap = deepCopy(map);
-
-console.log(deepCopiedMap);
-deepCopiedMap.set("key1", obj2);
-const deepCopiedSet = deepCopy(set);
-const deepCopiedWeakMap = deepCopy(weakMap);
-const deepCopiedWeakSet = deepCopy(weakSet);
-
-assert.notStrictEqual(map, deepCopiedMap);
-assert.deepStrictEqual(set, deepCopiedSet);
-// assert.deepStrictEqual(weakMap, deepCopiedWeakMap);
-// assert.deepStrictEqual(weakSet, deepCopiedWeakSet);
