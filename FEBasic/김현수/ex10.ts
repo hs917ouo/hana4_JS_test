@@ -71,7 +71,8 @@ class ArrayList<T> extends Collection<ListNode<T>> {
     this.push(newNode);
   }
 
-  get(index: number): ListNode<T> | undefined {
+  // get 메서드 수정: value 값을 반환하도록 변경
+  get(index: number): T | undefined {
     let current = this.head;
     let count = 0;
 
@@ -80,15 +81,23 @@ class ArrayList<T> extends Collection<ListNode<T>> {
       count++;
     }
 
-    return current;
+    return current ? current.value : undefined; // value 값을 반환
   }
 
+  // set 메서드 수정: get(index)를 사용해 해당 노드의 값을 설정
   set(index: number, value: T): void {
-    const node = this.get(index);
-    if (node) {
-      node.value = value;
+    let current = this.head;
+    let count = 0;
+
+    while (current && count < index) {
+      current = current.rest;
+      count++;
+    }
+
+    if (current) {
+      current.value = value;
     } else {
-      throw new Error("Index out of bounds");
+      console.log(`index ${index} is not exist.`);
     }
   }
 
@@ -113,12 +122,32 @@ class ArrayList<T> extends Collection<ListNode<T>> {
   }
 
   remove(value: T): void {
-    const index = this.indexOf(value);
-    if (index !== -1) {
-      this.delete(index);
-    } else {
-      throw new Error("Value not found in list");
+    let current = this.head;
+    let prev: ListNode<T> | undefined = undefined;
+    let index = 0;
+
+    while (current) {
+      if (current.value === value) {
+        if (prev) {
+          prev.rest = current.rest;
+        } else {
+          this.head = current.rest;
+        }
+
+        if (!current.rest) {
+          this.last = prev;
+        }
+
+        this.delete(index);
+        return;
+      }
+
+      prev = current;
+      current = current.rest;
+      index++;
     }
+
+    console.log("Value not found in list");
   }
 
   size(): number {
@@ -157,11 +186,3 @@ class Stack<T> extends Collection<T> {}
 class Queue<T> extends Collection<T> {}
 
 export { Stack, Queue, ArrayList };
-// 사용 예시
-// const arrayList = new ArrayList<number>();
-// arrayList.add(10);
-// arrayList.add(20);
-// arrayList.add(30);
-
-// console.log(arrayList.toString());
-// { value: 10, rest: { value: 20, rest: { value: 30 } } }
