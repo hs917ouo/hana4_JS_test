@@ -1,15 +1,15 @@
 class Collection<T> {
   protected items: T[] = [];
 
-  push(value: T): void {
+  protected push(value: T): void {
     this.items.push(value);
   }
 
-  length(): number {
+  protected length(): number {
     return this.items.length;
   }
 
-  delete(index: number): void {
+  protected delete(index: number): void {
     if (index >= 0 && index < this.items.length) {
       this.items.splice(index, 1);
     } else {
