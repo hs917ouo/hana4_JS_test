@@ -1,6 +1,6 @@
 {
   "name": "febasic",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "하나로 4,5기 프론트엔드 기초 평가 과제",
   "main": "index.js",
   "scripts": {
